@@ -40,4 +40,9 @@ for(var i = 0; i < pacientes.length; i++){
 }
 
 
+var btnAdicionarPaciente = document.querySelector("#adicionar-paciente");
+btnAdicionarPaciente.addEventListener('click', function(){
+
+});
+
 
