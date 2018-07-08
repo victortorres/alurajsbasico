@@ -5,12 +5,15 @@ btnAdicionarPaciente.addEventListener('click', function(event){
     var form = document.querySelector("#form-adiciona");
     var paciente = obtemPacienteDoFormulario(form);
         
-    var pacienteTr = montarTrPaciente(paciente);
+    if(validarPaciente(paciente)){
+        var pacienteTr = montarTrPaciente(paciente);
+    
+        var bodyTable = document.querySelector("#tabela-pacientes");
+        bodyTable.appendChild(pacienteTr);
+    
+        form.reset();
+    }
 
-    var bodyTable = document.querySelector("#tabela-pacientes");
-    bodyTable.appendChild(pacienteTr);
-
-    form.reset();
 });
 
 function obtemPacienteDoFormulario(form){
@@ -52,4 +55,11 @@ function montarTd(classCss, value){
     tdNova.textContent = value;
 
     return tdNova;
+}
+
+function validarPaciente(paciente){
+    if (validarPeso(paciente.peso) && validarAltura(paciente.altura)) {
+        return true;
+    }
+    return false;
 }

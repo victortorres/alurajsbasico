@@ -35,13 +35,29 @@ for(var i = 0; i < pacientes.length; i++){
 
     tdImc.textContent = calcularIMC(peso, altura);
 
-    function calcularIMC(peso, altura){
-        var imc = 0;
-        imc = peso / (altura * altura);
 
-        return imc.toFixed(2);
+
+}
+
+function calcularIMC(peso, altura){
+    var imc = 0;
+    imc = peso / (altura * altura);
+
+    return imc.toFixed(2);
+}
+
+function validarPeso(peso){
+    if(peso >= 0 && peso <= 1000){
+        return true;
     }
+    return false;
+}
 
+function validarAltura(altura){
+    if (altura >= 0 && altura <= 3.0) {
+        return true;
+    }
+    return false;
 }
 
 
