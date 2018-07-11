@@ -8,6 +8,7 @@ btnAdicionarPaciente.addEventListener('click', function(event){
     var erros = validarPaciente(paciente);
 
     if(erros.length == 0){
+        /*
         var pacienteTr = montarTrPaciente(paciente);
     
         var bodyTable = document.querySelector("#tabela-pacientes");
@@ -15,13 +16,27 @@ btnAdicionarPaciente.addEventListener('click', function(event){
         
         var ul = document.querySelector("#mensagems-erro");
         ul.innerHTML = "";
-
+        */
+        adicionarPaciente(paciente);
+        
         form.reset();
+        
+        var ul = document.querySelector("#mensagems-erro");
+        ul.innerHTML = "";
     } else {
         exibirErros(erros);
     }
 
 });
+
+function adicionarPaciente(paciente){
+
+    var pacienteTr = montarTrPaciente(paciente);
+    
+    var bodyTable = document.querySelector("#tabela-pacientes");
+    bodyTable.appendChild(pacienteTr);
+
+}
 
 function obtemPacienteDoFormulario(form){
     //1- ao pegar o form da tela, se eu der um "name" para cada atributo(input)
