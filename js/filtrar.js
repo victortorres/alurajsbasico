@@ -9,11 +9,13 @@ inputFiltrar.addEventListener("input", function(){
         pacientes.forEach(function(paciente){
             var pacienteTd = paciente.querySelector(".info-nome");
             var pacienteNome = pacienteTd.textContent;
-    
-            if(pacienteNome != inputFiltrar.value){
-                paciente.classList.add("invisivel");
-            } else {
+            
+            var expressao = new RegExp(inputFiltrar.value, "i");
+
+            if(expressao.test(pacienteNome)){
                 paciente.classList.remove("invisivel");
+            } else {
+                paciente.classList.add("invisivel");
             }
         });
     } else {
