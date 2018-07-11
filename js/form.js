@@ -4,14 +4,21 @@ btnAdicionarPaciente.addEventListener('click', function(event){
 
     var form = document.querySelector("#form-adiciona");
     var paciente = obtemPacienteDoFormulario(form);
-        
-    if(validarPaciente(paciente)){
+       
+    var erros = validarPaciente(paciente);
+
+    if(erros.length == 0){
         var pacienteTr = montarTrPaciente(paciente);
     
         var bodyTable = document.querySelector("#tabela-pacientes");
         bodyTable.appendChild(pacienteTr);
-    
+        
+        var ul = document.querySelector("#mensagems-erro");
+        ul.innerHTML = "";
+
         form.reset();
+    } else {
+        exibirErros(erros);
     }
 
 });
@@ -58,8 +65,30 @@ function montarTd(classCss, value){
 }
 
 function validarPaciente(paciente){
-    if (validarPeso(paciente.peso) && validarAltura(paciente.altura)) {
-        return true;
+    var erros = [];
+
+    if (!validarPeso(paciente.peso)) {
+        erros.push("Peso inválido");
     }
-    return false;
+
+    if (!validarAltura(paciente.altura)) {
+        erros.push("Altura inválido");
+    }
+    
+    return erros;
+}
+
+function exibirErros(mensagensDeErro){
+
+    var ul = document.querySelector("#mensagems-erro");
+    //essa funcao serve para controlar os dados internos de uma tag
+    //onde neste caso eu estou limpando tudo o que existe
+    ul.innerHTML = "";
+
+    mensagensDeErro.forEach(function(erro) {
+        var li = document.createElement("li");
+        li.textContent = erro;
+        ul.appendChild(li);
+    });
+
 }
